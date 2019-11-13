@@ -1,0 +1,71 @@
+#include <iostream>
+using namespace std;
+
+class Activity
+{
+    public:
+    int id, startTime, finishTime;
+};
+
+int main()
+{
+    int n,i,pass,j,t;
+    cout<<"Enter number of activities: ";
+    cin>>n;
+    Activity a[n];
+    Activity temp;
+
+    for(i=0;i<n;i++)
+    {
+        cout<<"Enter ID, Start Time and Finish Time for activity "<<i+1<<" : ";
+        cin>>a[i].id>>a[i].startTime>>a[i].finishTime;
+    }
+
+    cout<<"Printing: "<<endl;
+
+    for(i=0;i<n;i++)
+    {
+        cout<<"Activity id: "<<a[i].id<<" "<<a[i].startTime<<" "<<a[i].finishTime<<endl;
+    }
+
+    cout<<"Finish Time Sorted using Bubble Sort:"<<endl;
+
+    for(pass=1; pass<n; pass++)
+    {
+        for(j=0;j<n;j++)
+        {
+            if(a[j].finishTime>a[j+1].finishTime)
+            {
+                temp.id = a[j].id;
+                temp.startTime = a[j].startTime;
+                temp.finishTime =  a[j].finishTime;
+
+                a[j].id = a[j+1].id;
+                a[j].startTime = a[j+1].startTime;
+                a[j].finishTime = a[j+1].finishTime;
+
+                a[j+1].id = temp.id;
+                a[j+1].startTime = temp.startTime;
+                a[j+1].finishTime = temp.finishTime;
+             }
+        }
+    }
+
+    for(i=0;i<n;i++)
+    {
+        cout<<"ID: "<<a[i].id<<" Start Time: "<<a[i].startTime<<" Finish Time: "<<a[i].finishTime<<endl;
+    }
+
+    cout<<endl<<"Selected Activities: "<<endl;
+    i=0;
+    cout<<"ID: "<<a[i].id<<" Start Time: "<<a[i].startTime<<" Finish Time: "<<a[i].finishTime<<endl;
+    for(j=1;j<n;j++)
+    {
+        if(a[j].startTime >= a[i].finishTime)
+        {
+            cout<<"ID: "<<a[j].id<<" Start Time: "<<a[j].startTime<<" Finish Time: "<<a[j].finishTime<<endl;
+            i=j;
+        }
+    }
+
+}
